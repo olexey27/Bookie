@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udemy", "Udemy\Udemy.csproj", "{99AA2E0D-D8E1-4B7F-BAF8-812864E5DF1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyWebRazor_Temp", "UdemyWebRazor_Temp\UdemyWebRazor_Temp.csproj", "{F154A607-EFBD-4CD5-A6E9-22B341DBB101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyWebRazor_Temp", "UdemyWebRazor_Temp\UdemyWebRazor_Temp.csproj", "{F154A607-EFBD-4CD5-A6E9-22B341DBB101}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
