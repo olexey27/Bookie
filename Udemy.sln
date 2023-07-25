@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy", "Udemy\Udemy.csproj", "{99AA2E0D-D8E1-4B7F-BAF8-812864E5DF1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Udemy", "Udemy\Udemy.csproj", "{99AA2E0D-D8E1-4B7F-BAF8-812864E5DF1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyWebRazor_Temp", "UdemyWebRazor_Temp\UdemyWebRazor_Temp.csproj", "{F154A607-EFBD-4CD5-A6E9-22B341DBB101}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{99AA2E0D-D8E1-4B7F-BAF8-812864E5DF1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99AA2E0D-D8E1-4B7F-BAF8-812864E5DF1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99AA2E0D-D8E1-4B7F-BAF8-812864E5DF1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F154A607-EFBD-4CD5-A6E9-22B341DBB101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F154A607-EFBD-4CD5-A6E9-22B341DBB101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F154A607-EFBD-4CD5-A6E9-22B341DBB101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F154A607-EFBD-4CD5-A6E9-22B341DBB101}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
