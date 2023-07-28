@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Udemy.DataAccess\UdemyBook.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
