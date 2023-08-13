@@ -20,7 +20,9 @@ namespace UdemyBook.DataAccess.Repository
             this.dbSet = _db.Set<T>();
             //_db.Categories == dbSet
             _db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+
         }
+
         public void Add(T entity)
         {
             dbSet.Add(entity);
@@ -32,7 +34,6 @@ namespace UdemyBook.DataAccess.Repository
             if (tracked)
             {
                 query = dbSet;
-
             }
             else
             {
@@ -60,7 +61,7 @@ namespace UdemyBook.DataAccess.Repository
             }
             if (!string.IsNullOrEmpty(includeProperties))
             {
-                foreach(var includeProp in includeProperties
+                foreach (var includeProp in includeProperties
                     .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);

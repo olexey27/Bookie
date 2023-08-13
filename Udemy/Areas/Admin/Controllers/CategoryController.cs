@@ -8,7 +8,7 @@ using UdemyBook.Utility;
 namespace UdemyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,13 +16,11 @@ namespace UdemyBook.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
         public IActionResult Index()
         {
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
-
         public IActionResult Create()
         {
             return View();
@@ -42,6 +40,7 @@ namespace UdemyBook.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+
         }
         public IActionResult Edit(int? id)
         {
@@ -52,6 +51,7 @@ namespace UdemyBook.Areas.Admin.Controllers
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
             //Category? categoryFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
+
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -85,6 +85,7 @@ namespace UdemyBook.Areas.Admin.Controllers
             }
             return View(categoryFromDb);
         }
+
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {

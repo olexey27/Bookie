@@ -11,7 +11,7 @@ using UdemyBook.Utility;
 namespace UdemyBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -21,11 +21,10 @@ namespace UdemyBook.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
         }
-
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
-            
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+
             return View(objProductList);
         }
 
@@ -38,9 +37,9 @@ namespace UdemyBook.Areas.Admin.Controllers
                     Text = u.Name,
                     Value = u.Id.ToString()
                 }),
-            Product = new Product()
+                Product = new Product()
             };
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 //create
                 return View(productVM);
@@ -51,6 +50,7 @@ namespace UdemyBook.Areas.Admin.Controllers
                 productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
                 return View(productVM);
             }
+
         }
         [HttpPost]
         public IActionResult Upsert(ProductVM productVM, IFormFile? file)
@@ -66,7 +66,7 @@ namespace UdemyBook.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
                     {
                         //delete the old image
-                        var oldImagePath = 
+                        var oldImagePath =
                             Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
 
                         if (System.IO.File.Exists(oldImagePath))
@@ -75,14 +75,15 @@ namespace UdemyBook.Areas.Admin.Controllers
                         }
                     }
 
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName),FileMode.Create))
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
+
                     productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
-                if(productVM.Product.Id == 0)
+                if (productVM.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productVM.Product);
                 }
@@ -91,7 +92,6 @@ namespace UdemyBook.Areas.Admin.Controllers
                     _unitOfWork.Product.Update(productVM.Product);
                 }
 
-                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
@@ -102,7 +102,6 @@ namespace UdemyBook.Areas.Admin.Controllers
                 {
                     Text = u.Name,
                     Value = u.Id.ToString()
-
                 });
                 return View(productVM);
             }
@@ -116,18 +115,17 @@ namespace UdemyBook.Areas.Admin.Controllers
             List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
             return Json(new { data = objProductList });
         }
+
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
             var productToBeDeleted = _unitOfWork.Product.Get(u => u.Id == id);
-            if(productToBeDeleted == null)
+            if (productToBeDeleted == null)
             {
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
-            var oldImagePath =
-                            Path.Combine(_webHostEnvironment.WebRootPath,
-                            productToBeDeleted.ImageUrl.TrimStart('\\'));
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,productToBeDeleted.ImageUrl.TrimStart('\\'));
 
             if (System.IO.File.Exists(oldImagePath))
             {

@@ -18,7 +18,6 @@ namespace UdemyBook.Models
         [ValidateNever]
         public OrderHeader OrderHeader { get; set; }
 
-
         [Required]
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
@@ -27,6 +26,5 @@ namespace UdemyBook.Models
 
         public int Count { get; set; }
         public double Price { get; set; }
-
     }
 }
