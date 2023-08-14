@@ -74,15 +74,12 @@ namespace UdemyBook.Areas.Admin.Controllers
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-
                     using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
-
                     productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
-
                 if (productVM.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productVM.Product);
@@ -91,7 +88,6 @@ namespace UdemyBook.Areas.Admin.Controllers
                 {
                     _unitOfWork.Product.Update(productVM.Product);
                 }
-
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
@@ -125,13 +121,14 @@ namespace UdemyBook.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
-            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,productToBeDeleted.ImageUrl.TrimStart('\\'));
+            var oldImagePath =
+                           Path.Combine(_webHostEnvironment.WebRootPath,
+                           productToBeDeleted.ImageUrl.TrimStart('\\'));
 
             if (System.IO.File.Exists(oldImagePath))
             {
                 System.IO.File.Delete(oldImagePath);
             }
-
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
 
